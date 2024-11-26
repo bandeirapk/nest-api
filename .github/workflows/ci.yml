@@ -1,1 +1,17 @@
+name: CI
 
+# Evento que vai disparar o workflow (push, pull_request, etc) chamado de "trigger"
+on:
+  push: # Evento push - Quando um push é feito e em qual branch
+    branches:
+      - main # Branch main
+
+# 1 Workflow pode ter vários jobs e um job pode ter várias steps
+jobs:
+  build:
+    name: "Build and Push" # Nome do job
+    runs-on: ubuntu-latest # Sistema operacional que o job vai rodar
+
+    steps:
+      - name: Checkout Repository # Nome da step
+        uses: actions/checkout@v4 # Ação que faz o checkout do repositório
