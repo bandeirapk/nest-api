@@ -45,4 +45,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: bandeirapk/nestapi-nodejs:${{ steps.generate_tag.outputs.sha }}
+          tags: bandeirapk/nestapi-nodejs:${{ steps.generate_tag.outputs.sha }}, bandeirapk/nestapi-nodejs:latest
