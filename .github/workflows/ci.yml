@@ -41,6 +41,7 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
+        992382695244.dkr.ecr.us-east-1.amazonaws.com/rocketseat-nestjs-api
 
       # - name: Login to Docker Hub
       #   uses: docker/login-action@v3
@@ -48,9 +49,13 @@ jobs:
       #     username: ${{ vars.DOCKERHUB_USERNAME }}
       #     password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # # - name: Build docker image 
-      # #   run: |
-      # #     docker build -t nestapi-nodejs:${{ steps.generate_tag.outputs.sha }} .
+      - name: Build and Push docker image 
+        env: 
+          ECR_RESGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          TAG: ${{ steps.generate_tag.outputs.sha }}
+        run: |
+          docker build -t $ECR_RESGISTRY/nestapi-nodejs:$TAG .
+          docker push ECR_RESGISTRY/nestapi-nodejs:$TAG
 
       # - name: Build and Push docker image
       #   uses: docker/build-push-action@v6
