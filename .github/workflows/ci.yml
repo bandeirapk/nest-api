@@ -54,7 +54,7 @@ jobs:
           TAG: ${{ steps.generate_tag.outputs.sha }}
         run: |
           docker build -t $ECR_RESGISTRY/nestapi-nodejs:$TAG .
-          docker push ECR_RESGISTRY/nestapi-nodejs:$TAG
+          docker push $ECR_RESGISTRY/nestapi-nodejs:$TAG
 
       # - name: Build and Push docker image
       #   uses: docker/build-push-action@v6
