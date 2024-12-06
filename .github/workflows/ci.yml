@@ -50,12 +50,11 @@ jobs:
 
       - name: Build and Push docker image 
         env: 
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           TAG: ${{ steps.generate_tag.outputs.sha }}
         run: |
-          echo "Building image with tag $TAG and pushing to $REGISTRY"
-          docker build -t $ECR_REGISTRY/rocketseat-nestjs-api:$TAG .
-          docker push $ECR_REGISTRY/rocketseat-nestjs-api:$TAG
+          docker build -t $ECR_REGISTRY/nestapi-nodejs:$TAG .
+          docker push $ECR_REGISTRY/nestapi-nodejs:$TAG
 
       # - name: Build and Push docker image
       #   uses: docker/build-push-action@v6
