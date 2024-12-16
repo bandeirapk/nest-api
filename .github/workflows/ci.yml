@@ -67,11 +67,16 @@ jobs:
       #     tags: bandeirapk/nestapi-nodejs:${{ steps.generate_tag.outputs.sha }}, bandeirapk/nestapi-nodejs:latest
       
       - name: Deploy to App Runner
+        id: deploy-apprunner
         uses: awslabs/amazon-app-runner-deploy@main
         with:
           name: rocketseat-nestjs-api
           image: ${{ steps.build-docker-image.outputs.image }}
+          service: rocketseat-api-nestjs
           region: us-east-1
           cpu: 1
           memory: 2
           port: 3000
+
+      - name: App Runner URL
+        run: echo "App runner URL ${{ steps.deploy-apprunner.outputs.service-url }}" 
