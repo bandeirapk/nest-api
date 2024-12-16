@@ -71,6 +71,7 @@ jobs:
         uses: awslabs/amazon-app-runner-deploy@main
         with:
           name: rocketseat-nestjs-api
+          access-role-arn: arn:aws:iam::992382695244:role/LabRole
           image: ${{ steps.build-docker-image.outputs.image }}
           service: rocketseat-api-nestjs
           region: us-east-1
